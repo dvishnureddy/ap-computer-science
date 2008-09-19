@@ -1,0 +1,38 @@
+/**
+   This program tests the DataSet class.
+*/
+public class DataSetTester
+{
+   public static void main(String[] args)
+   {
+      DataSet bankData = new DataSet();
+
+      bankData.add(new person("Jim", "Smith", 34));
+      bankData.add(new person("Kevin", "Cop", 10));
+      bankData.add(new person("Courtney", "Thompson", 21));
+
+      System.out.println("Average age = " 
+            + bankData.getAverage());
+      //Measurable max = bankData.getMaximum();
+      person max = new person ("temp", "temp", 0);
+      if (bankData.getMaximum() instanceof person)
+      {
+           max = (person) bankData.getMaximum();
+      }
+      System.out.println("Oldest person = "+ ((person)max).getFirstName () +" at " 
+         + max.getMeasure());
+
+      DataSet coinData = new DataSet();
+
+      coinData.add(new Coin(0.25, "quarter"));
+      coinData.add(new Coin(0.1, "dime"));
+      coinData.add(new Coin(0.05, "nickel"));
+
+      System.out.println("Average coin value = " 
+            + coinData.getAverage());
+      //max = coinData.getMaximum();
+      Coin max2 = (Coin) coinData.getMaximum();
+      System.out.println("Highest coin value = " 
+            + max2.getMeasure());
+   }
+}

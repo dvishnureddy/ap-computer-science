@@ -1,0 +1,523 @@
+/*GUIs*GUIs*GUIs*GUIs*GUIs*GUIs*GUIs*GUIs*GUIs*GUIs*GUIs*GUIs*GUIs*GUIs*GUIs*GUIs*GUIs*
+ *
+ *    Name: 
+ *    Date: 4/28/07
+ *    Filename: ChoiceFrame.java
+ *    Description: This is a special Frame with text editing functionality.
+ *
+ GUIs*GUIs*GUIs*GUIs*GUIs*GUIs*GUIs*GUIs*GUIs*GUIs*GUIs*GUIs*GUIs*GUIs*GUIs*GUIs*GUIs*/
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.border.*;
+
+public class ChoiceFrame extends JFrame
+{
+      //This label will be used to draw the desired text on the screen.
+      private JLabel sampleField;
+      
+      //These variables store the font name, size and style that will be
+      //  changed throughout the program.
+      private String fontName;
+      private int fontSize;
+      private int fontStyle;
+      
+      //These are the components used to change the value of the font name
+      //  size and style.
+      private JCheckBox italicCheckBox;
+      private JCheckBox boldCheckBox;
+      private JRadioButton smallButton;
+      private JRadioButton mediumButton;
+      private JRadioButton largeButton;
+      private JComboBox facenameCombo;
+      private JTextField textField;
+      
+      //This button will be used to update all the values.
+      private JButton update;
+            
+      //These font-size values do not change and can be used throughout the
+      //  program.
+      private static final int SMALL_SIZE = 24;
+      private static final int MEDIUM_SIZE = 36;
+      private static final int LARGE_SIZE = 48;
+      
+      
+      /*
+       * This is the constructor for our ChoiceFrame
+       */
+      public ChoiceFrame(String name)
+      {
+            //The keyword super simply sends name to the constructor of
+            //  JFrame.
+            super(name);
+            
+            //Construct the default text and textcolor
+            sampleField = new JLabel(new String("Big Java"));
+            sampleField.setForeground(Color.RED);
+            
+            //Add the text to the main panel
+            this.getContentPane().add(sampleField, BorderLayout.CENTER);
+            
+            //Call the method below to add all the components and menu
+            //  to the frame
+            this.createControlPane();
+            
+            //Create and set the menu bar
+            JMenuBar menuBar = new JMenuBar();
+            this.setJMenuBar(menuBar);
+            
+            //Call the methods to add two menus (file and font) to the menu bar 
+            menuBar.add(this.createFileMenu());
+            menuBar.add(this.createFontMenu());
+            
+            //Call the method to re-draw the label
+            this.setSampleFont();
+            
+            
+      }
+      
+      
+      /*
+       * The following method resets the window to its original status.
+       */
+      public void init()
+      {
+            sampleField.setText(new String("Big Java"));
+            textField.setText(new String("Big Java"));
+            
+            facenameCombo.setSelectedIndex(0);
+            
+            italicCheckBox.setSelected(false);
+            boldCheckBox.setSelected(false);
+            
+            smallButton.setSelected(true);
+            
+            this.setSampleFont();
+      }//end init method
+      
+      
+      /*
+       * The following method creates the control panel to change the font.
+       */
+      public void createControlPane()
+      {
+            //Create the four panels that control the font change
+            JPanel facenamePanel = this.createComboBox();
+            JPanel sizeGroupPanel = this.createCheckBoxes();
+            JPanel styleGroupPanel = this.createRadioButtons();
+            JPanel textUpdatePanel = this.createUpdateButton();
+            
+            //Add the four font control panels to one big panel using
+            //  a grid layout
+            JPanel controlPanel = new JPanel();
+            controlPanel.setLayout(new GridLayout(4,1));
+            controlPanel.add(facenamePanel);
+            controlPanel.add(sizeGroupPanel);
+            controlPanel.add(styleGroupPanel);
+            controlPanel.add(textUpdatePanel);
+            
+            
+            //Add the panels to the content pane
+            this.getContentPane().add(controlPanel, BorderLayout.SOUTH);
+      }
+      
+      
+      /*
+       * The following method creates the file menu
+       * postcondition: returns the JMenu for the file menu.
+       */
+      public JMenu createFileMenu()
+      {
+            JMenu menu = new JMenu(new String("File"));
+            menu.add(this.createFileResetItem());
+            menu.add(this.createFileExitItem());
+            return menu;
+      }//end createFileMenu method
+      
+      
+      /*
+       * The following method creates the font menu
+       * postcondition: returns the JMenu for the font menu.
+       */
+      public JMenu createFontMenu()
+      {
+            JMenu menu = new JMenu(new String("Font"));
+            menu.add(this.createFontNameMenu());
+            menu.add(this.createFontSizeMenu());
+            menu.add(this.createFontStyleMenu());
+            return menu;
+      }//end createFontMenu method
+      
+      
+      /*
+       * The following method creates the submenu to choose a font name
+       * postcondition: returns the JMenu for the font name submenu.
+       */
+      public JMenu createFontNameMenu()
+      {
+            JMenu menu = new JMenu(new String("Name"));
+            menu.add(this.createFontNameItem(new String("Serif")));
+            menu.add(this.createFontNameItem(new String("SansSerif")));
+            menu.add(this.createFontNameItem(new String("Monospaced")));
+            return menu;
+      }//end createFontNameMenu method
+      
+      
+      /*
+       * The following method creates the submenu to choose a font size
+       * postcondition: returns the JMenu for the font size submenu.
+       */
+      public JMenu createFontSizeMenu()
+      {
+            JMenu menu = new JMenu(new String("Size"));
+            menu.add(this.createFontSizeItem(new String("Small")));
+            menu.add(this.createFontSizeItem(new String("Medium")));
+            menu.add(this.createFontSizeItem(new String("Large")));
+            return menu;
+      }//end createFontSizeMenu method
+      
+      
+      /*
+       * The following method creates the submenu to choose a font style
+       * postcondition: returns the JMenu for the font style submenu.
+       */
+      public JMenu createFontStyleMenu()
+      {
+            JMenu menu = new JMenu(new String("Style"));
+            menu.add(this.createFontStyleItem(new String("Plain")));
+            menu.add(this.createFontStyleItem(new String("Italic")));
+            menu.add(this.createFontStyleItem(new String("Bold")));
+            menu.add(this.createFontStyleItem(new String("Bold Italic")));
+            return menu;
+      }//end createFontStyleMenu method
+      
+      
+      /*
+       * The following method creates the file menu item to reset all the
+       *     values
+       * postcondition: returns the JMenuItem for the file menu item "Reset".
+       */
+      public JMenuItem createFileResetItem()
+      {
+            JMenuItem item = new JMenuItem(new String("Reset"));
+            class MenuItemListener implements ActionListener
+            {
+                  public void actionPerformed(ActionEvent event)
+                  {
+                        init();
+                  }
+            }
+            ActionListener listener = new MenuItemListener();
+            item.addActionListener(listener);
+            return item;
+      }//end createFileResetItem method
+      
+      
+      /*
+       * The following method creates the file menu item to quit the program
+       * postcondition: returns the JMenuItem for the file menu item "Exit".
+       */
+      public JMenuItem createFileExitItem()
+      {
+            JMenuItem item = new JMenuItem(new String("Exit"));
+            class MenuItemListener implements ActionListener
+            {
+                  public void actionPerformed(ActionEvent event)
+                  {
+                        System.exit(0);
+                  }
+            }
+            ActionListener listener = new MenuItemListener();
+            item.addActionListener(listener);
+            return item;
+      }//end createFileExitItem method
+      
+      
+      /*
+       * The following method creates the font menu item to choose a font
+       *     name.
+       * postcondition: returns the JMenuItem for the font menu item for
+       *     the font name.
+       */
+      public JMenuItem createFontNameItem(String name)
+      {
+            JMenuItem item = new JMenuItem(name);
+            
+            //This class is used to create a special ActionListener for this menu item
+            class MenuItemListener implements ActionListener
+            {
+                  private String name;
+                  
+                  public MenuItemListener(String n)
+                  {
+                        name = n;
+                  }
+                  
+                  public void actionPerformed(ActionEvent event)
+                  {
+                        //Set the font of the text field
+                        fontName = name;
+                        sampleField.setFont(new Font(fontName, fontStyle, fontSize));
+                        sampleField.repaint();
+                        
+                        pack();
+   
+                  }
+            }
+            ActionListener listener = new MenuItemListener(name);
+            item.addActionListener(listener);
+            return item;
+      }//end createFontNameItem method
+      
+      
+      /*
+       * The following method creates the font menu item to choose a font
+       *     size.
+       * postcondition: returns the JMenuItem for the font menu item for
+       *     the font size.
+       */
+      public JMenuItem createFontSizeItem(String size)
+      {
+            JMenuItem item = new JMenuItem(size);
+            
+            //This class is used to create a special ActionListener for this menu item
+            class MenuItemListener implements ActionListener
+            {
+                  private String size;
+                  
+                  public MenuItemListener(String s)
+                  {
+                        size = s;
+                  }
+                  
+                  public void actionPerformed(ActionEvent event)
+                  {
+                        //Set the size of the font
+                        if(size.equals("Small"))
+                              fontSize = SMALL_SIZE;
+                        else if(size.equals("Medium"))
+                              fontSize = MEDIUM_SIZE;
+                        else if(size.equals("Large"))
+                              fontSize = LARGE_SIZE;
+                        
+                        sampleField.setFont(new Font(fontName, fontStyle, fontSize));
+                        sampleField.repaint();
+                        
+                        pack();
+   
+                  }
+            }
+            ActionListener listener = new MenuItemListener(size);
+            item.addActionListener(listener);
+            return item;
+      }//end createFontSizeItem method
+      
+      
+      /*
+       * The following method creates the font menu item to choose a font
+       *     style.
+       * postcondition: returns the JMenuItem for the font menu item for
+       *     the font style.
+       */
+      public JMenuItem createFontStyleItem(String style)
+      {
+            JMenuItem item = new JMenuItem(style);
+            
+            //This class is used to create a special ActionListener for this menu item
+            class MenuItemListener implements ActionListener
+            {
+                  private String style;
+                  
+                  public MenuItemListener(String s)
+                  {
+                        style = s;
+                  }
+                  
+                  public void actionPerformed(ActionEvent event)
+                  {
+                        //Set the size of the font
+                        if(style.equals("Plain"))
+                              fontStyle = Font.PLAIN;
+                        else if(style.equals("Italic"))
+                              fontStyle = Font.ITALIC;
+                        else if(style.equals("Bold"))
+                              fontStyle = Font.BOLD;
+                        else if(style.equals("Bold Italic"))
+                              fontStyle = Font.ITALIC|Font.BOLD;
+                        
+                        sampleField.setFont(new Font(fontName, fontStyle, fontSize));
+                        sampleField.repaint();
+                        
+                        pack();
+   
+                  }
+            }
+            ActionListener listener = new MenuItemListener(style);
+            item.addActionListener(listener);
+            return item;
+      }//end createFontStyleItem method
+      
+      
+      /*
+       * The following method creates the combo box with font style choices
+       * postcondition: returns the panel containing the combo box.
+       */
+      public JPanel createComboBox()
+      {
+            facenameCombo = new JComboBox();
+            facenameCombo.addItem(new String("Serif"));
+            facenameCombo.addItem(new String("SansSerif"));
+            facenameCombo.addItem(new String("Monospaced"));
+            facenameCombo.setEditable(true);
+            
+            //TO BE ADDED BY YOU!
+            //facenameCombo.addActionListener(...);
+            
+            JPanel panel = new JPanel();
+            panel.add(facenameCombo);
+            panel.setBorder
+                  (new TitledBorder(new EtchedBorder(), "Font Name"));
+            
+            return panel;
+      }//end createComboBox method
+      
+      
+      /*
+       * The following method creates the check boxes for selection bold and
+       *     italic styles
+       * postcondition: returns the panel containing the check boxes.
+       */
+      public JPanel createCheckBoxes()
+      {
+            italicCheckBox = new JCheckBox(new String("Italic"));
+            //italicCheckBox.addActionListener(this);
+                  
+            boldCheckBox = new JCheckBox(new String("Bold"));
+
+            //TO BE ADDED BY YOU!
+            //boldCheckBox.addActionListener(...);
+            
+            JPanel panel = new JPanel();
+            panel.add(italicCheckBox);
+            panel.add(boldCheckBox);
+            panel.setBorder
+                  (new TitledBorder(new EtchedBorder(), "Style"));
+            
+            return panel;
+      }//end createCheckBoxes method
+      
+      
+      /*
+       * The following method creates the check boxes for selection bold and
+       *     italic styles
+       * postcondition: returns the panel containing the check boxes.
+       */
+      public JPanel createRadioButtons()
+      {
+            smallButton = new JRadioButton(new String("Small"));
+            //TO BE ADDED BY YOU!
+            //smallButton.addActionListener(...);
+            
+            mediumButton = new JRadioButton(new String("Medium"));
+            //TO BE ADDED BY YOU!
+            //mediumButton.addActionListener(...);
+            
+            largeButton = new JRadioButton(new String("Large"));
+            //TO BE ADDED BY YOU!
+            //largeButton.addActionListener(...);
+            smallButton.setSelected(true);
+            
+            //add radio buttons to a button group
+            
+            ButtonGroup group = new ButtonGroup();
+            group.add(smallButton);
+            group.add(mediumButton);
+            group.add(largeButton);
+            
+            JPanel panel = new JPanel();
+            panel.add(smallButton);
+            panel.add(mediumButton);
+            panel.add(largeButton);
+            panel.setBorder
+                  (new TitledBorder(new EtchedBorder(),new String("Size")));
+            
+            return panel;
+      }//end createRadioButtons method
+      
+      
+      /*
+       * The following method creates the textfield to change the text
+       *     and the button to update the label.
+       * postcondition: returns the panel containing the textfield and button.
+       */
+      public JPanel createUpdateButton()
+      {
+            JLabel textLabel = new JLabel(new String("Change text to: "));
+            
+            textField = new JTextField(new String("Big Java"), 20);
+            
+            update = new JButton(new String("Update"));
+            
+            //This class is used to create a special ActionListener for this menu item
+            class MenuItemListener implements ActionListener
+            {
+                  /*
+                   * This method is called when the update button is clicked
+                   */
+                  public void actionPerformed(ActionEvent event)
+                  {
+                        //Call the method to change the text on the screen.
+                        setSampleFont();
+                  }//end actionPerformed method
+            }
+            ActionListener listener = new MenuItemListener();
+            update.addActionListener(listener);
+            
+            JPanel panel = new JPanel();
+            
+            panel.add(textLabel);
+            panel.add(textField);
+            panel.add(update);
+            
+            return panel;
+      }//end createUpdateButton method
+      
+      
+      /*
+       * Gets the user choice for font, style and size and redraws the text
+       *     accordingly.
+       */
+      public void setSampleFont()
+      {
+            //Get the font name from the JComboBox
+            fontName = (String)facenameCombo.getSelectedItem();
+            
+            sampleField.setText(textField.getText());
+
+            //Get the font style from the JCheckBoxes
+            fontStyle=0;
+            if(italicCheckBox.isSelected())
+                  fontStyle+=Font.ITALIC;
+            if(boldCheckBox.isSelected())
+                  fontStyle+=Font.BOLD;
+            
+            //Get the font size
+            fontSize=0;
+            
+            if(smallButton.isSelected())
+                  fontSize=SMALL_SIZE;
+            else if(mediumButton.isSelected())
+                  fontSize=MEDIUM_SIZE;
+            else if(largeButton.isSelected())
+                  fontSize=LARGE_SIZE;
+            
+            //Set the font of the text field
+            sampleField.setFont(new Font(fontName, fontStyle, fontSize));
+            sampleField.repaint();
+            
+            this.pack();
+            
+      }//end setSampleFont method
+      
+}//end ChoiceFrame class

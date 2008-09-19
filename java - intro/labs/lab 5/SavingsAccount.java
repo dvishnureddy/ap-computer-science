@@ -1,0 +1,57 @@
+/**
+ * The SavingsAccount object simulates the baisic features of a savings account.
+ * @author Ryan O'Hara
+ * @Version 1.0
+ */
+
+public class SavingsAccount
+{
+     private double balance;
+     
+     /**
+      * @param initBalance
+      */
+     
+     public SavingsAccount (double initBalance)
+     {
+          balance = initBalance;
+     }// end BankAccount constructer 
+     
+     /**
+      * @param amount
+      */
+    
+     public void deposit (double amount)
+     {
+          balance += amount;
+     }//end  deposit method 
+     
+     
+     /**
+      * @param amount
+      */
+     
+     public void withdraw (double amount)
+     {
+          balance -= amount;
+     }//end  withdraw method 
+     
+     /**
+      * @param rate
+      */
+     
+     public void addInterest (double rate)
+     {
+          balance += rate/100 * balance;
+     }
+     
+     /**
+      * @return
+      */
+     
+     public double checkBalance ()
+     {
+          return balance;
+     }//end checkBalance method 
+     
+}//end SavingsAccount class

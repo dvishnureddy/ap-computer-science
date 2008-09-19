@@ -1,0 +1,30 @@
+public class FindFactors
+{
+     public static void main (String args [])
+     {
+          FactorGenerator gen = new FactorGenerator (126000);
+          
+          int numFactors = 0;
+          
+          while (gen.hasMoreFactors ())
+          {
+               numFactors ++;
+               gen.nextFactor();
+          }//end while
+          
+          int [] factors = new int [numFactors];
+          
+          gen.reset ();
+          
+          System.out.println ("There are " + numFactors + " factors.");
+          
+          for (int i = 0; i < factors.length; i++)
+          {
+               factors[i] = gen.nextFactor ();
+          }
+          
+          for (int val : factors)
+               System.out.println (val);
+          
+     }//end main
+}//end FindFactors

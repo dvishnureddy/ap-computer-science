@@ -1,0 +1,16 @@
+public class TestPerson
+{
+     public static void main (String args[])
+     {
+          person p1 = new person ("Mike", "Hunt", 69);
+          person p2 = new person ("Willy", "Islong", 13);
+          
+          System.out.println ("First person:\n\t"+ p1);
+          System.out.println ("Second person:\n\t"+ p2);
+          
+          p2.theBirthdayMethod ();
+          
+          System.out.println ("Second person:\n\t"+ p2);
+          
+     }
+}//end TestPerson

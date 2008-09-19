@@ -1,0 +1,24 @@
+/*Ryan O'Hara
+ * October 23, 2007
+ * Test 1 Corrections
+ */
+
+import java.util.Scanner;
+
+public class NameChange
+{
+     public satatic void main (String args[])
+     {
+          Scanner in = new Scanner (System.in);
+          String firstName, lastName;
+          
+          System.out.println ("Please enter your first name: ");
+          firstName = in.nextLine ();
+          
+          System.out.println ("Please enter your last name: ");
+          lastName = in.nextLine ();
+          
+     }//ends main method
+}// ends NameChange class
+               
+             

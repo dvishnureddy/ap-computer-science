@@ -1,0 +1,72 @@
+/************************************************************************
+  * 
+  * Introduction to Programming
+  * Name: Ryan O'Hara
+  * Date: September 24, 2007
+  * Title: Lab2Rectangle.java
+  * Description: Shows basic properties of the Rectangle object.
+  * Input: none
+  * Output: information about the Rectangles.
+  * 
+  *************************************************************************/
+
+import java.awt.*;
+
+public class Lab2Rectangle
+{
+     public static void main (String args [])
+     {
+//The following is the declaration of a Rectangle object.
+// new Rectangle (x_coord, y_coord, width, height)
+          Rectangle r1 = new Rectangle (5, 10, 100, 200);
+          Rectangle r2 = new Rectangle (30, 500, 50, 600);
+          
+          System.out.println (printRectangle (r1));
+          System.out.println (printRectangle (r2));
+          
+     }//end main method
+     
+     
+     /*
+      * This method will calculate the perimeter of the Rectangle
+      * object received as a parameter
+      */
+     public static String printRectangle (Rectangle rectangle2Print)
+     {
+          return "\n\nThe Rectangle's dimensions are as follows:\n" +
+               "\tx_coordinate = " + rectangle2Print.getX() + "\n" +
+               "\ty_coordinate = " + rectangle2Print.getY() + "\n" +
+               
+               "\twidth = " + rectangle2Print.getWidth() + "\n" +
+               
+               "\theight = " + rectangle2Print.getHeight() + "\n" +
+               
+               "The Rectangle's perimeter and area are as follows:\n" +
+               
+               "\tperimeter = " + calculatePerimeter (rectangle2Print) + "\n" +
+               
+               "\tarea = " + calculateArea (rectangle2Print);
+     }
+     
+     /*
+      * This method will calculate the perimeter of the Rectangle
+      * object received as a parameter
+      */
+     public static double calculatePerimeter (Rectangle whichRectangle)
+     {
+          double perimeter = (2*whichRectangle.getHeight( ))+(2*whichRectangle.getWidth( ));
+          return perimeter;
+     }//end calculatePerimeter
+     
+     
+     /*
+      * This method will calculate the area of the Rectangle
+      * object received as a parameter
+      */
+     public static double calculateArea (Rectangle whichRectangle)
+     {
+          double area = (whichRectangle.getHeight())*(whichRectangle.getWidth());
+          return area;
+     }//end calculateArea
+     
+ }//end class

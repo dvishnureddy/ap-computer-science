@@ -1,0 +1,9 @@
+/*Ryan O'Hara
+ * February 6, 2008
+ * Tests the purse class
+ */
+public class PurseTester
+{
+     public static void main (String[] args)
+     {
+          

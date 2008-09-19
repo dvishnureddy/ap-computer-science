@@ -1,0 +1,54 @@
+/************************************************************************
+  * 
+  * Introduction to Programming
+  * Name: your name
+  * Date: today's date
+  * Title: DataTypesExample.java
+  * Description: Fix the variable names and type to match the values
+  *              on the right of each equal sign.
+  * 
+  *************************************************************************/
+
+public class DataTypesExample
+{
+     public static void main (String args [])
+     {
+          /* 
+           * Fix each line of code below so that the program compiles
+           * successfully.  Do NOT change the values to the right of
+           * the equals sign.
+           */
+          
+          // 1.
+          int 1stnumber = 15;
+          
+          // 2.
+          float letter = '2';
+          
+          // 3.
+          Boolean true = false;
+          
+          // 4.
+          char one+one = 2.0;
+          
+          // 5.
+          byte large number = 10.2452E140;
+          
+          // 6.
+          short num4;
+          num4 = -2424287921;
+          
+          // 7.
+          double precision-number = 55.1513532636454376452;
+          
+          // 8.
+          int normal# = -17;
+          
+          // 9.
+          long words = "The quick brown fox jumped over the lzy dog.";
+          
+          // 10.
+          int try = 920242153275521364;
+     
+     }//end main method
+}//end class

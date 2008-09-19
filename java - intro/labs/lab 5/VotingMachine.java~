@@ -1,0 +1,85 @@
+/**
+ * This simulates a voting machine.
+ * @author Ryan O'Hara
+ * @Version 1.0
+ */
+
+public class VotingMachine
+{
+     
+     private double Dvotes, Rvotes, votes;
+          
+     /**
+      * @param initVotes
+      */
+     
+     public VotingMachine (double initVotes)
+     {
+          votes = initVotes;
+     }// end constructer
+     
+     /**
+      * @param initDvotes
+      */
+     
+     public void Democrats (double initDvotes)
+     {
+          Dvotes = initDvotes;
+     }
+     
+     /**
+      * @param initRvotes
+      */
+     
+     public void Republicans (double initRvotes)
+     {
+          Rvotes = initRvotes;
+     }
+
+     /**
+      * @param Dvotes
+      */
+    
+     public void Dvoting (double Dvotes)
+     {
+          votes += Dvotes;
+     }//end Democrats method 
+     
+     
+     /**
+      * @param Rvotes
+      */
+     
+     public void Rvoting (double Rvotes)
+     {
+          votes += Rvotes;
+     }//end Republican method 
+     
+     /**
+      * @return 
+      */
+     
+     public double checkvotes ()
+     {
+     return votes;
+     }//end checkvotes method
+     
+     /**
+      * @return
+      */
+     
+     public double checkDvotes ()
+     {
+          return Dvotes;
+     }//end checkDvotes method
+     
+     /**
+      * @return
+      */
+     
+     public double checkRvotes ()
+     {
+          return Rvotes;
+     }//end checkRvotes method 
+     
+}//end VotingMachine class

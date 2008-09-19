@@ -1,0 +1,24 @@
+/**
+ * Tests the VotingMachine object
+ * 
+ * Last test: 11/5/07
+ */
+public class VotingMachineTester
+{
+     /**
+      * @param args String arguments for the main method
+      */
+     public static void main (String args [])
+     {
+          
+          VotingMachine localVotingMachine = new VotingMachine (0);
+          
+
+          localVotingMachine.Democrats (100);
+          localVotingMachine.Republicans (100);
+          
+          System.out.println (localVotingMachine.checkvotes ()+"have been casted Democrats recieved "+ localVotingMachine.checkDvotes ()+" votes "+
+          "and Republicans have recieved "+ localVotingMachine.checkRvotes () +" votes.");
+          
+     }// end main method
+}// end Car class

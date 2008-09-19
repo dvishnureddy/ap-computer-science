@@ -1,0 +1,11 @@
+import javax.swing.JOptionPane;
+
+public class DialogTester
+{
+     public static void main(String[] args) 
+     {
+          String name = JOptionPane.showInputDialog("What is your name?");
+          System.out.println("hello " + name); 
+          //System.exit(0);
+     }//end of main mthod
+}//end of the class 

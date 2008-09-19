@@ -1,0 +1,166 @@
+/**
+ * Our first animation Applet!  Hooray!
+ */
+import java.applet.*;
+import java.awt.*;
+import java.awt.geom.*;
+import java.awt.event.*;
+import java.util.*;
+
+public class AnimationAppletMulti extends Applet implements Runnable, KeyListener
+{
+     //Declare any global variables here
+     
+     private Thread animator;//this Thread will control the animation
+     private int delay; //this value will control the amount of
+                             // time the Thread will sleep on each step
+                             // of the animation (in milliseconds).
+     
+     private ArrayList <LineShape> lines = new ArrayList<LineShape>();
+     
+     public void init ()
+     {
+          //initialize any and all values for the Applet
+          line1 = new LineShape (50, 100, 150, 65,
+                                 1, 1, 1, 1,
+                                 1, -1, 1, -1);
+          delay = 10;
+          
+          this.setFocusable(true);
+          this.addKeyListener (this);
+     }//end init method
+     
+     
+     public void start ()
+     {
+          animator = new Thread (this);
+          animator.start();
+     }//end start method
+     
+     
+     public void stop ()
+     {
+          animator = null;
+     }//end stop method
+     
+     
+     public void paint (Graphics g)
+     {
+          Graphics2D g2 = (Graphics2D) g;
+          
+          line1.setLine ();
+          g2.draw (line1.getLine ());
+     }//end paint method
+     
+     
+     public void run ()
+     {
+          while (Thread.currentThread() == animator)
+          {
+               line1.setX1 (line1.getX1() +
+                            line1.getX1Run() * line1.getX1Dir());
+               line1.setY1 (line1.getY1() +
+                            line1.getY1Rise() * line1.getY1Dir());
+               line1.setX2 (line1.getX2() +
+                            line1.getX2Run() * line1.getX2Dir());
+               line1.setY2 (line1.getY2() +
+                            line1.getY2Rise() * line1.getY2Dir());
+               
+               if (line1.getX1() < 0)
+               {
+                    line1.setX1(0);
+                    line1.switchX1Dir();
+               }//end if
+               else if (line1.getX1() > this.getWidth())
+               {
+                    line1.setX1(this.getWidth());
+                    line1.switchX1Dir();
+               }//end else if
+               
+               if (line1.getY1() < 0)
+               {
+                    line1.setY1(0);
+                    line1.switchY1Dir();
+               }//end if
+               else if (line1.getY1() > this.getHeight())
+               {
+                    line1.setY1(this.getHeight());
+                    line1.switchY1Dir();
+               }//end else if
+               
+               
+               if (line1.getX2() < 0)
+               {
+                    line1.setX2(0);
+                    line1.switchX2Dir();
+               }//end if
+               else if (line1.getX2() > this.getWidth())
+               {
+                    line1.setX2(this.getWidth());
+                    line1.switchX2Dir();
+               }//end else if
+               
+               if (line1.getY2() < 0)
+               {
+                    line1.setY2(0);
+                    line1.switchY2Dir();
+               }//end if
+               else if (line1.getY2() > this.getHeight())
+               {
+                    line1.setY2(this.getHeight());
+                    line1.switchY2Dir();
+               }//end else if
+               
+               
+               repaint();
+               
+               try
+               {
+                    Thread.sleep (delay); //have the thread sleep for
+                                          //"delay" milliseconds.
+               }//end try
+               catch (InterruptedException e)
+               {
+                    System.exit(-1);
+               }//end catch
+          }//end while loop
+          
+     }//end run method
+     
+     
+     public void keyReleased (KeyEvent e)
+     {
+     }
+     
+     public void keyPressed (KeyEvent e)
+     {
+          if (e.getKeyCode() == KeyEvent.VK_UP)
+          {
+               line1.setY1Rise(line1.getY1Rise() + 1);
+               if (line1.getY1Rise() >= 20)
+                    line1.setY1Rise(20);
+          }
+          else if (e.getKeyCode() == KeyEvent.VK_DOWN)
+          {
+               line1.setY1Rise(line1.getY1Rise() - 1);
+               if (line1.getY1Rise() <= 1)
+                    line1.setY1Rise(1);
+          }
+          if (e.getKeyCode() == KeyEvent.VK_RIGHT)
+          {
+               line1.setX1Run(line1.getX1Run() + 1);
+               if (line1.getX1Run() >= 20)
+                    line1.setX1Run (20);
+          }
+          else if (e.getKeyCode() == KeyEvent.VK_LEFT)
+          {
+               line1.setX1Run(line1.getX1Run() - 1);
+               if (line1.getX1Run() <= 1)
+                    line1.setX1Run(1);
+          }
+     }//end keyPressedMethod
+     
+     public void keyTyped (KeyEvent e)
+     {
+     }
+}//end MyFirstApplet applet

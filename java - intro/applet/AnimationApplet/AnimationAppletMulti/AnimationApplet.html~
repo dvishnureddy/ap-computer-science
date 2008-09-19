@@ -1,0 +1,11 @@
+<html>
+	<head>
+    	<title>MY FIRST APPLET!</title>
+    </head>
+
+	<body>
+    	<applet code="MyFirstApplet.class" width="400" height="400">
+        	The code did not work!
+        </applet>
+    </body>
+</html>

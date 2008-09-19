@@ -1,0 +1,80 @@
+/************************************************************************
+  *
+  * Introduction to Programming
+  * Name: Ryan O'Har
+  * Date: October 5,2007
+  * Title: Lab3CashRegister.java
+  * Description: Write the code to simulate a cash register.
+  *
+  *************************************************************************/
+
+import java.util.Scanner;
+
+public class Lab3CashRegister
+{
+     public static final double QUARTER_AMOUNT = 0.25;
+     public static final double DIME_AMOUNT = 0.1;
+     public static final double NICKEL_AMOUNT = 0.05;
+     public static final double PENNY_AMOUNT = 0.01;
+     
+     public static void main (String args [])
+     {
+          Scanner in = new Scanner (System.in);
+          
+          double purchaseAmount, cashAmount, changeAmount = 0.0;
+          int dollarPay, quarterPay, dimePay, nickelPay, pennyPay;
+          
+          System.out.print ("\nWelcome to the Java Cash Register\n");
+          
+          System.out.print ("\nHow much is the product you are purchasing?\nPrice: ");
+          purchaseAmount = in.nextDouble ();
+          
+          System.out.println ("Now please enter the number of Dollars, Quarters, " +
+                              "Dimes, Nickels, and Pennies you are using to pay with:");
+          
+          /**************************************************************
+            * Below you need to add 3 things:
+            * 
+            *     1. Code to allow the user to enter an int for each of the
+            *        coins listed above (store these values in dollarPay,
+            *        quarterPay, dimePay, etc.
+            *     2. Calculate the cash amount by totaling up the number of
+            *        each dollar or coin times the coin's amount.
+            *     3. Calculate the change about by subtracting the cashAmount
+            *        minus the purchase amount.
+            **************************************************************/
+          //BEGIN CODE HERE
+          
+          //KEEP THIS LINE
+          System.out.println ("You will receive $" + changeAmount);
+          
+          
+          /**************************************************************
+            * EXTRA CREDIT (If you don't do the extra credit, delete all this)
+            * You will need to do three things:
+            *     1. Declare 5 int variables to store the number of dollars,
+            *        quarters, dimes, nickels and pennies to give as change.
+            *        (call them dollarChange, quarterChange, dimeChange, etc.)
+            * 
+            *     2. GOING IN THIS ORDER, dollar, quarter, dime, nickel, and
+            *        penny, calculate the exact number of each that you will
+            *        get from the changeAmount calculated above.
+            *        For example:
+            *        If the changeAmount = $5.27,
+            *          then dollarChange = 5
+            *               quarterChange = 1
+            *               dimeChange = 0
+            *               nickelChange = 0
+            *            &  pennyChange = 2
+            * 
+            *     3. Print out all your results.
+            * 
+            *     4. Make sure all double values that are money values round
+            *        to the nearest hundredth.
+            * 
+            **************************************************************/
+          //BEGIN EXTRA CREDIT CODE HERE
+          
+          
+     }// end main method
+}// end Lab3CashRegister class

@@ -1,0 +1,16 @@
+/*
+ * Ryan O'Hara
+ * Tests the Bug object
+ */
+public class BugTester
+{
+     public static void main (String args [])
+     {
+          Bug ant = new Bug (5);
+          
+          ant.move (2);
+          ant.getPosition();
+          
+     }
+}
+               

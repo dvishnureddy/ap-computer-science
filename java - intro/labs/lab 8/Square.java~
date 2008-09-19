@@ -1,0 +1,136 @@
+/*Ryan O'Hara
+ * MagicSquare
+ * 
+ * Will be used to create a 2D, nxn array that will store
+ * a Magic Square with values 1, 2, 3, ..., n^2
+ */
+
+public class Square
+{
+     private int[][] square;
+     private int rowIndex, columnIndex;
+     private int size;
+     
+     public Square (int n)
+     {
+          square = new int[n][n];
+          rowIndex = 0;
+          columnIndex = 0;
+          size = n;
+     }//end constructor
+     
+     
+     public void add (int i)
+     {
+          square[rowIndex][columnIndex] = i;
+          
+          if (columnIndex >= (size - 1))
+          {
+               columnIndex = 0;
+               rowIndex++;
+          }
+          else
+               columnIndex++;
+     }//end add method
+          
+
+     public boolean isMagic()
+     {
+          //1. Check if the square is full.  Return false
+          //    if not.
+          
+          for (int i = 0; i < rowIndex; i++)
+          {
+               for (int j = 0; j < columnIndex; j++)
+               {
+                    if (square [i][j] == 0)
+                         return false;
+               }
+          }
+          //2. Make sure that the numbers 1 through n^2 each
+          //    appear EXACTLY once.  Return false if not.
+          
+          
+          //3. Devise a way to calculate the sums of the rows,
+          //   columns and diagonals to see if they are all 
+          //   equals.  Return false if not.
+          
+
+          int checkSum = 0, rowSum = 0;
+          int diagonalSum1 = square [0][0], diagonalSum2 = square[0][(square[0].length)];
+          int [] colSums = new int [square[0].length];
+          for (int j = 0; j < square[0].length; j++)
+                                              {
+                                              checkSum += square [0][j];
+                                              colSums += square [0][j];
+                                         }
+                                         
+                                         for (int i = 1; i < square.length; i++)
+                                              {
+                                              rowSum = 0;
+                                                   //nested loop
+                                                   for (int j = 0; j < square[i].length; i++);
+                                              {
+                                                   rowSum += square [i][j];
+                                                   colSums[j] += square [i][j];
+                                                        
+                                                        if (i==j)
+                                                   {
+                                                        diagonalSum1 += square [i][j];
+                                                   }
+                                                   if (i == ((square[i].length - 1) - j))
+                                                   {
+                                                        diagonalSum2 += square [i][j];
+                                                   }
+                                              }
+                                              
+                                              if (rowSum != checkSum)
+                                                   return false;
+                                         }//end outside loop
+                                         if (diagonalSum1 != checkSum || diagonalSum2 != checkSum)
+                                              return false;
+                                              
+                                              for (int j = 0; j < square.length; j++)
+                                              if (colSums (j) != checkSum)
+                                              {
+                                              return true;
+                                         }
+
+
+          
+          /*for (int i = 0; i < size; i ++)
+          {
+               if (square [i][0] ==  (square [i][1]) && square[i][1]== (square[i][2]));
+               {    
+                    if (square[i][0] == ('0'))
+                         return false;
+               }
+          }
+
+          // Next check all columns down.
+          for (int j = 0; j < size; j ++)
+          {
+               if (square [0][j] == (square [1][j]) && square[1][j] == (square[2][j]))
+               {
+                    if (square[0][j] == ('0'))
+                    return false;
+               }
+          }    
+          
+          // Now check diagonal, down-right.
+          if (square [0][0] == (square [1][1]) && square[1][1] == (square[2][2]))
+          {    
+               if (square[0][0] == ('0'))
+                    return false;
+          }
+          
+          // Now check diagonal, down-left.
+          if (square [0][2] == (square [1][1]) && square[1][1] == (square[2][0]))
+          {    
+               if (square[0][2] == ('0'))
+                    return false;
+          }
+          */
+          }
+                                    
+}//end Square class

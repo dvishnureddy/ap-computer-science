@@ -1,0 +1,9 @@
+/**
+ * Create a line we can animate in AnimationApplet.
+ */
+import java.awt.*;
+import java.awt.geom.*;
+
+public class LineShape
+{
+     

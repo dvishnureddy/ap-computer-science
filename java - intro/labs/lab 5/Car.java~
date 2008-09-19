@@ -1,0 +1,77 @@
+/**
+ * This simulates the gas usage of a car.
+ * @author Ryan O'Hara
+ * @Version 1.0
+ */
+
+public class Car
+{
+     //Create an instance field for the balance of the account
+     // This variable is global and can be accessed or modified in any method or constructor
+     private double MilesPerGallon;
+     
+     /**
+      * @param initFeul
+      */
+     
+     public Car (double initFeul)
+     {
+          //Car = MilesPerGallon;
+          //Car = initFeul;
+     }// end constructer 
+     
+     /**
+      * @param drive
+      */
+    
+     public void addGas (double gallons)
+     {
+          gallons += initFeul;
+     }//end addGas method 
+     
+     
+     /**
+      * @param miles
+      */
+     
+     public void drive (double miles)
+     {
+          drive = miles;
+          initFeul -= miles;
+     }//end drive method 
+     
+     /**
+      * @param intrest
+      */
+     
+     public void addInterest (double rate)
+     {
+          rate = .1 * balance;
+          balance += rate;
+          
+          rate = .1 * balance;
+          balance += rate;
+          
+          rate = .1 * balance;
+          balance += rate;
+          
+          rate = .1 * balance;
+          balance += rate;
+          
+          rate = .1 * balance;
+          balance += rate;
+     }
+     
+     
+     /**
+      * Returns the current balance in the bank account
+      * 
+      * @return the current balance 
+      */
+     
+     public double checkBalance ()
+     {
+     return balance;
+     }//end checkBalance method 
+     
+}//end bankAccount class

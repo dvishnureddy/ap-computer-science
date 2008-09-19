@@ -1,0 +1,13 @@
+/*Ryan O'Hara
+ */
+public class DieTester
+{
+     public static void main(String [] args)
+     { 
+          Die Roll = new Die (6);
+          
+          System.out.println (Roll.getRoll());
+          
+     }
+}
+               

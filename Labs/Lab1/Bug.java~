@@ -1,0 +1,15 @@
+/*
+ * This simulates the movement of a bug
+ * Ryan O'Hara
+ */
+
+public class Bug
+{
+     private int pos;
+     
+     public Bug (int initPosition)
+     {
+          pos = initPosition;
+     }
+     
+     public void move

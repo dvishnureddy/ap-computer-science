@@ -1,0 +1,48 @@
+import javax.swing.*;
+
+public class EmptyFrameViewer
+{
+     public static void main (String args[])
+     {
+          //The Frame and JFrame objects can be used to create a basic, platfrom-independent window.
+          JFrame frame = new JFrame ();
+          
+          final int FRAME_WIDTH = 1440;
+          final int FRAME_HEIGHT = 4000;
+          
+          frame.setSize (FRAME_WIDTH, FRAME_HEIGHT);
+          frame.setTitle ("An Empty Frame - How exciting!");
+          frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+          
+          frame.setVisible (true);
+          
+          JMenuBar menu = new JMenuBar ();
+          
+          frame.setJMenuBar (menu);
+          
+          JMenu myMenu = new JMenu ("File");
+          menu.add (myMenu);
+          
+          JMenuItem help = new JMenuItem ("Help");
+          myMenu.add (help);
+          
+          JMenu subMyMenu = new JMenu ("Ryan");
+          myMenu.add (subMyMenu);
+          
+          JMenuItem ohara = new JMenuItem ("O'Hara");
+          subMyMenu.add (ohara);
+          
+          JButton bigButton = new JButton ("Click away! I do nothing");
+          JButton newButton = new JButton ("Click me Im cooler");
+          
+          frame.getContentPane ().add (bigButton);
+          frame.getContentPane ().add (newButton);
+          
+          JScrollBar newScrollBar = new JScrollBar ();
+          frame.getContentPane ().add (newScrollBar);
+          
+          frame.setVisible (true);
+          
+     }//end main
+}//end class 
+     

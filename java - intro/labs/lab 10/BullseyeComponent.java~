@@ -1,0 +1,59 @@
+import java.awt.*;
+import java.awt.geom.*;
+import javax.swing.*;
+import java.util.Random;
+
+/**
+   A component that draws two rectangles.
+*/
+public class BullseyeComponent extends JComponent
+{  
+   public void paintComponent(Graphics g)
+   {  
+      // Recover Graphics2D
+      Graphics2D g2 = (Graphics2D) g;
+      
+      Random gen = new Random ();
+      
+      Color newColor = new Color (gen.nextInt (256),  //Amount of red
+                                  gen.nextInt (256),  //Amount of green
+                                  gen.nextInt (256)); //Amount of blue
+      Color black = Color.BLACK;
+      
+      // Construct a rectangle and draw it
+      BullseyeGraphic b1 = new BullseyeGraphic(50, 50, 100, 100,
+                                            gen.nextInt (10)+3);
+      
+      b1.paint (g2);
+      
+      BullseyeGraphic b2 = new BullseyeGraphic(160, 50, 100, 100,
+                                       gen.nextInt (10)+3);
+      
+      b2.paint (g2);
+
+           
+      /*
+       * g2.setColor (newColor);
+      g2.fill(box);
+      g2.setColor (black);
+      g2.draw(box);
+
+      for (int i = 0; i < gen.nextInt (50); i++)
+      {
+           // Move rectangle 15 units to the right and 25 units down
+           box.setFrame(gen.nextInt (300), gen.nextInt(400), 20, 30);
+           
+           newColor = new Color (gen.nextInt (256),  //Amount of red
+                                 gen.nextInt (256),  //Amount of green
+                                 gen.nextInt (256)); //Amount of blue
+           
+           // Draw moved rectangle
+           g2.setColor (newColor);
+           g2.fill(box);
+           g2.setColor (black);
+           g2.draw(box);
+           
+      }
+      */
+   }
+}

@@ -1,0 +1,10 @@
+<html>
+	<head>
+    	<title>Animation APPLET!</title>
+    </head>
+    
+    <body>
+    	<applet code= "AnimationApplet.class" width="400" height="400">
+        </applet>
+    </body>
+</html>

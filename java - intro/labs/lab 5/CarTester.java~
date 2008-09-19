@@ -1,0 +1,23 @@
+/**
+ * Tests the Car object
+ * 
+ * Last test: 11/5/07
+ */
+public class CarTester
+{
+     /**
+      * @param args String arguments for the main method
+      */
+     public static void main (String args [])
+     {
+          
+          Car myCar = new Car (25);
+          
+
+          myCar.addGas (10);
+          myCar.drive (100);
+          
+          System.out.println ("My Car has "+ myCar.checkGas ()+" gallons of gas remaining");
+          
+     }// end main method
+}// end Car class

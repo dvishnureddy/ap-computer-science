@@ -1,0 +1,269 @@
+/********************************************************************************
+ *
+ *    Name: 
+ *    Date: 5/1/05
+ *    Filename: AnimationApplet.java
+ *    Description: Animated so that two squares move around the screen and bounce
+ *         off of eachother.  Also, there are keyboard interactions.
+ *
+ *********************************************************************************/
+
+import java.applet.*;
+import java.awt.*;
+import java.awt.geom.*;
+import java.awt.event.*;
+import java.util.*;
+
+//Notice, we extend the Applet class and implement the thread interface Runnable
+public class AnimationApplet extends Applet implements Runnable, KeyListener
+{
+   //'one' and 'two' will be our animated objects.
+   private AnimatedShape one;
+   private AnimatedShape two;
+   
+   //A Thread controls the animation.
+   private Thread animator;
+   
+   //delay (in milliseconds) will control the step by step
+   // animation time.
+   private int delay = 20;
+   
+   private boolean intersecting;
+   
+   //Set up the initial position of the squares and initialize
+   // the Rectangle2D.Double object.  This is the first method
+   // called when the Applet is opening.
+   public void init()
+   {
+        Random gen = new Random ();
+        Color color1 = new Color ((int)(gen.nextDouble() * 256),
+                                 (int)(gen.nextDouble() * 256),
+                                 (int)(gen.nextDouble() * 256));
+        Color color2 = new Color ((int)(gen.nextDouble() * 256),
+                                 (int)(gen.nextDouble() * 256),
+                                 (int)(gen.nextDouble() * 256));
+        Color color3 = new Color ((int)(gen.nextDouble() * 256),
+                                  (int)(gen.nextDouble() * 256),
+                                  (int)(gen.nextDouble() * 256));
+        Color color4 = new Color ((int)(gen.nextDouble() * 256),
+                                 (int)(gen.nextDouble() * 256),
+                                 (int)(gen.nextDouble() * 256));
+
+        
+      one = new AnimatedShape (new Rectangle2D.Double(), 0, 0, 100, 100,
+                               1, 1, 1, 2, color1, color2);
+      two = new AnimatedShape (new Rectangle2D.Double(), 300, 300, 100, 100,
+                               1, -1, 4, 2, color3, color4);
+      
+      //This code sets the Applet up to allow for and react to keyboard input.
+      this.setFocusable(true);
+      this.addKeyListener(this);
+            
+      intersecting = false;
+      
+   }//end init method
+   
+   
+   //Start the Applet (called after the init method is called)
+   public void start()
+   {
+      animator = new Thread(this);
+      animator.start();
+   }//end start method
+   
+   
+   //This method is called when the Applet is closed.
+   public void stop()
+   {
+      animator = null;
+   }//end stop method
+   
+   
+   //The paint method.
+   public void paint(Graphics g)
+   {
+      
+      //recover Graphics2D
+      Graphics2D g2 = (Graphics2D)g;
+      
+      g2.setColor(one.getFillColor());
+      g2.fill (one.getShape());
+      g2.setColor(one.getOutlineColor());
+      g2.draw (one.getShape());
+      
+      g2.setColor(two.getFillColor());
+      g2.fill (two.getShape());
+      g2.setColor(two.getOutlineColor());
+      g2.draw (two.getShape());
+      
+   }//end paint method
+   
+   
+   //After the start method has been called, the run method is called.
+   public void run ()
+   {
+        Random gen = new Random ();
+        Color color1 = new Color ((int)(gen.nextDouble() * 256),
+                                 (int)(gen.nextDouble() * 256),
+                                 (int)(gen.nextDouble() * 256));
+        Color color2 = new Color ((int)(gen.nextDouble() * 256),
+                                 (int)(gen.nextDouble() * 256),
+                                 (int)(gen.nextDouble() * 256));
+        Color color3 = new Color ((int)(gen.nextDouble() * 256),
+                                  (int)(gen.nextDouble() * 256),
+                                  (int)(gen.nextDouble() * 256));
+        Color color4 = new Color ((int)(gen.nextDouble() * 256),
+                                 (int)(gen.nextDouble() * 256),
+                                 (int)(gen.nextDouble() * 256));
+      
+      //Check that the current thread is still our animator (basically
+      // this is true until the Applet is closed.
+      while(Thread.currentThread() == animator)
+      {
+         //Move each shape.
+         one.moveShape();
+         two.moveShape();
+         
+         //These if/else statements check if the 'one' has hit a
+         // wall and we need to change its direction.
+         if (one.getX() > (this.getWidth()-one.getWidth()))
+         {      
+            //Make sure 'one' didn't go right past the wall and
+            // change its left/right direction.
+            one.setX((this.getWidth()-one.getWidth()));
+            one.changeHorizontalDirection();
+         }
+         else if (one.getX() < 0)
+         {
+            //Make sure 'one' didn't go past the right wall and
+            // change its left/right direction.
+            one.setX(0);
+            one.changeHorizontalDirection();
+         }
+         if (one.getY() > (this.getHeight()-one.getHeight()))
+         {
+            //Make sure 'one' didn't go past the bottom and
+            // change it's up/down direction.
+            one.setY((this.getHeight()-one.getHeight()));
+            one.changeVerticalDirection();
+         }
+         else if (one.getY() < 0)
+         {
+            //Make sure 'one' didn't go past the wall and change it's up/
+            // down direction.
+            one.setY(0);
+            one.changeVerticalDirection();
+         }
+         
+         //These if/else statements check if the 'two' has hit a
+         // wall and we need to change its direction.
+         if (two.getX() > (this.getWidth()-two.getWidth()))
+         {      
+            //Make sure 'two' didn't go right past the wall and
+            // change its left/right direction.
+            two.setX((this.getWidth()-two.getWidth()));
+            two.changeHorizontalDirection();
+         }
+         else if (two.getX() < 0)
+         {
+            //Make sure 'two' didn't go past the right wall and
+            // change its left/right direction.
+            two.setX(0);
+            two.changeHorizontalDirection();
+         }
+         if (two.getY() > (this.getHeight()-two.getHeight()))
+         {
+            //Make sure 'two' didn't go past the bottom and
+            // change it's up/down direction.
+            two.setY((this.getHeight()-two.getHeight()));
+            two.changeVerticalDirection();
+         }
+         else if (two.getY() < 0)
+         {
+            //Make sure 'two' didn't go past the wall and change it's up/
+            // down direction.
+            two.setY(0);
+            two.changeVerticalDirection();
+         }
+         
+         if (one.getShape().intersects((Rectangle2D)two.getShape()))
+         {
+              one.setFillColor(color1);
+              one.setOutlineColor(color2);
+              two.setFillColor(color3);
+              two.setOutlineColor(color4);
+            if (!intersecting)
+            {
+               delay *= 5;
+               System.out.println ("The squares are intersecting!\n" +
+                                   "\tThe delay is " + delay);
+               one.setFillColor(color1);
+               one.setOutlineColor(color2);
+               two.setFillColor(color3);
+               two.setOutlineColor(color4);
+               
+               intersecting = true;
+            }
+         }
+         else
+         {
+            if (intersecting)
+            {
+               delay /= 5;
+               System.out.println ("The squares are NOT intersecting!\n" +
+                                   "\tThe delay is " + delay);
+
+               one.setFillColor(color1);
+               one.setOutlineColor(color2);
+               two.setFillColor(color3);
+               two.setOutlineColor(color4);
+               
+               intersecting = false;
+            }
+         }
+         
+         //Repaint the squares in the new position (basically,
+         // it clears the Applet window and calls the paint method
+         // again.
+         repaint();
+         
+         
+         //Have the Thread sleep for the time (in milliseconds)
+         // specified by delay.
+         try
+         {
+            Thread.sleep(delay);
+         }
+         catch (InterruptedException e)
+         {
+            break;
+         }
+      }//end while method
+   }// end run method
+   
+   
+   public void keyPressed(KeyEvent e)
+   {
+      //This code checks that the up or down arrow keys were
+      // pressed.  If so, increment or decrement the delay
+      // (a.k.a. the speed of the animation.)
+      if(e.getKeyCode() == KeyEvent.VK_UP)
+      {
+         delay+=2;
+      }
+      else if(e.getKeyCode() == KeyEvent.VK_DOWN)
+      {
+         delay-=2;
+         
+         //Don't let the speed go lower than 0.
+         if(delay<0)
+            delay=0;
+      }
+   }//end keyPressed method
+   
+   public void keyReleased(KeyEvent e) {}
+   
+   public void keyTyped(KeyEvent e) {}
+   
+   
+}//end AnimationApplet class

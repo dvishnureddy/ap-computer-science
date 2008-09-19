@@ -1,0 +1,33 @@
+/* An example of decision statements */
+import java.util.Random;
+import java.util.Scanner;
+
+public class GuessThatNumber
+{
+     public static void main (String args [])
+     {
+          int mysteryNumber;
+          
+          Random gen = new Random ();
+          Scanner in = new Scanner (System.in);
+          
+          int guess;
+          
+          mysteryNumber = gen.nextInt (100) + 1;
+          
+          System.out.println ("Welcome to \" The Best Game Ever\"");
+          System.out.println ("\n\nThe mystery number has been chosen!");
+          System.out.print ("\n\nPlease guess a number from 1 to 100: ");
+          
+          guess = in.nextInt ();
+          do
+               
+          {
+          if (guess == mysteryNumber)
+               System.out.println ("WOW! YOU MUST BE A SUPERHUMAN");
+          else
+               System.out.println ("Sorry you lose the number was "+ mysteryNumber);
+          }
+          while (guess != mysteryNumber);
+     }// end main method
+}//end GuessThatNumber class

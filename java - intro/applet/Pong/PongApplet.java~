@@ -1,0 +1,297 @@
+/*Applets*Applets*Applets*Applets*Applets*Applets*Applets*Applets*Applets*Applets*Applets*Applets
+ *
+ *    Name: Ryan O'Hara
+ *    Date: 5/1/08 
+ *    Filename: PongApplet.java
+ *    Description: Play the game of Pong.
+ *
+ Applets*Applets*Applets*Applets*Applets*Applets*Applets*Applets*Applets*Applets*Applets*Applets*/
+
+import java.applet.*;
+import java.awt.*;
+import java.awt.geom.*;
+import java.awt.event.*;
+
+
+//Notice, we extend the Applet class and implement the thread interface Runnable
+// and interactive KeyListener interface.
+public class PongApplet extends Applet implements Runnable, KeyListener
+{
+     //These rectangles will be our paddles.
+     private AnimatedShape paddle1;
+     private AnimatedShape paddle2;
+     
+     private AnimatedShape ball;
+     
+     private int player1Points;
+     private int player2Points;
+     private int countDown;
+     
+     private boolean gameOver;
+     private boolean intersecting;
+     private boolean hasStarted;
+     private boolean reset;
+     
+     private AudioClip gameMusic;
+     private AudioClip gameOverMusic;
+     
+     //Thread controls the animation.
+     private Thread pongAnimator;
+     
+     //delay(in milliseconds) will control the step by step
+     // animation time.
+     private int delay = 20;
+     
+     //This sets the size of the paddles and the ball and determines the
+     //  max points for the game.
+     public static final int BALL_DIAMETER = 10;
+     public static final int PADDLE_WIDTH = 10;
+     public static final int PADDLE_HEIGHT = 40;
+     public static final int MAX_POINTS = 5;
+     
+     
+     //Set up the initial values for the paddles and the ball.
+     //  This is the first method called when the Applet is opening.
+     public void init()
+     {
+          paddle1 = new AnimatedShape (new Rectangle2D.Double(0, 0, 0, 0), 0 + PADDLE_WIDTH, this.getHeight()/2 - PADDLE_HEIGHT/2,
+                                       PADDLE_WIDTH, PADDLE_HEIGHT, 1, -1, 0, 5, Color.BLACK, Color.ORANGE);
+          paddle2 = new AnimatedShape (new Rectangle2D.Double(0, 0, 0, 0), this.getWidth() - PADDLE_WIDTH, this.getHeight()/2 - PADDLE_HEIGHT/2,
+                                       PADDLE_WIDTH, PADDLE_HEIGHT, 1, -1, 0, 5, Color.BLACK, Color.ORANGE);
+          ball = new AnimatedShape (new Ellipse2D.Double(0, 0, BALL_DIAMETER/2, BALL_DIAMETER/2), this.getWidth()/2 - BALL_DIAMETER/2,
+                                    this.getHeight()/2 - BALL_DIAMETER/2, BALL_DIAMETER, BALL_DIAMETER, 1, -1, -5, 5, Color.BLUE, Color.RED);
+          
+          
+          gameMusic = getAudioClip (getCodeBase (), "Gbbattle.mid");
+          
+          gameOverMusic = getAudioClip (getCodeBase (), "Gbbattle.mid");
+          
+          
+          
+          //This code sets the Applet up to allow for and react to keyboard input.
+          this.setFocusable(true);
+          this.addKeyListener(this);
+          
+          player1Points = 0;
+          player2Points = 0;
+          countDown = 0;
+          
+          gameOver = false;
+          intersecting = false;
+          
+     }
+     
+     
+     //Start the Applet(called after the init method is called)
+     public void start()
+     {
+          pongAnimator = new Thread(this);
+          pongAnimator.start();
+     }
+     
+     
+     //This method is called with the Applet is closed.
+     public void stop()
+     {
+          pongAnimator = null;
+     }
+     
+     
+     //The paint method.
+     public void paint(Graphics g)
+     {
+          //recover Graphics2D
+          Graphics2D g2 =(Graphics2D)g;
+          
+          //This generates a random color.
+          //Color color = new Color((int)(Math.random() * 256),(int)(Math.random() * 256),(int)(Math.random() * 256));
+          
+          if(gameOver)
+          {
+               String gO = new String ("GAME OVER");
+               g2.drawString(gO, this.getWidth ()/2 - 20, this.getHeight()/2 - 12);
+               gameOverMusic.loop ();
+          }
+          else
+          {
+               g2.setColor (paddle1.getOutlineColor());
+               g2.draw (paddle1.getShape());
+               g2.setColor (paddle2.getOutlineColor());
+               g2.draw (paddle2.getShape());
+               g2.setColor (ball.getOutlineColor());
+               g2.draw (ball.getShape());
+               g2.setColor (paddle1.getFillColor());
+               g2.fill (paddle1.getShape());
+               g2.setColor (paddle2.getFillColor());
+               g2.fill (paddle2.getShape());
+               g2.setColor (ball.getFillColor());
+               g2.fill (ball.getShape());
+               
+               String p1Points = new String ("Player1 Points : "+ player1Points);
+               g2.drawString(p1Points, 10, 15);
+               
+               String p2Points = new String ("Player2 Points : "+ player2Points);
+               g2.drawString(p2Points, this.getWidth() - 150, 15);
+          }
+          
+     }
+     
+     
+     //After the start method has been called, the run method is called.
+     public void run()
+     {
+          
+          //Check that the current thread is still our pongAnimator.
+          while(Thread.currentThread() == pongAnimator && !gameOver)
+          {
+               
+               ball.moveShape();
+               
+               if (gameOver = false)
+                    gameMusic.loop ();
+               
+               if (ball.getX() > (this.getWidth()-BALL_DIAMETER))
+               {      
+                    //Make sure 'ball' didn't go right past the wall and
+                    // change its left/right direction.
+                    ball.setX (this.getWidth()/2);
+                    ball.setY (this.getHeight()/2);     
+                    player1Points ++;
+                    if (player1Points == MAX_POINTS)
+                    {
+                         gameOver = true;
+                         
+                    }
+               }
+               else if (ball.getX() < 0)
+               {
+                    //Make sure 'one' didn't go past the right wall and
+                    // change its left/right direction.
+                    ball.setX (this.getWidth()/2);
+                    ball.setY (this.getHeight()/2);
+                    player2Points ++;
+                    if (player2Points == MAX_POINTS)
+                    {
+                         gameOver = true;
+                    }
+               }
+               if (ball.getY() > (this.getHeight()-BALL_DIAMETER))
+               {
+                    //Make sure 'one' didn't go past the bottom and
+                    // change it's up/down direction.
+                    ball.setY((this.getHeight()-BALL_DIAMETER));
+                    ball.changeVerticalDirection();
+               }
+               else if (ball.getY() < 2)
+               {
+                    //Make sure 'one' didn't go past the wall and change it's up/
+                    // down direction.
+                    ball.setY((0));
+                    ball.changeVerticalDirection();
+               } 
+               
+               if (ball.getShape().intersects((Rectangle2D)paddle1.getShape()))
+               {
+
+                    if (!intersecting)
+                    {
+                         ball.setX(0 + (PADDLE_WIDTH + BALL_DIAMETER));
+                         ball.changeHorizontalDirection ();
+                         intersecting = true;
+                    }
+               }
+               else
+               {
+                    if (intersecting)
+                    {
+                         intersecting = false;
+                    }
+               }
+               
+               if (ball.getShape().intersects((Rectangle2D)paddle2.getShape()))
+               {
+
+                    if (!intersecting)
+                    {
+                         ball.setX(this.getWidth() - PADDLE_WIDTH - BALL_DIAMETER);
+                         ball.changeHorizontalDirection ();
+                         intersecting = true;
+                    }
+               }
+               else
+               {
+                    if (intersecting)
+                    {
+                         intersecting = false;
+                    }
+               }
+               
+               repaint();
+               
+               //Have the Thread sleep for 1 second at a time.
+               try
+               {
+                    Thread.sleep(delay);
+               }
+               catch(InterruptedException e)
+               {
+                    break;
+               }
+          }
+     }
+     
+     
+     //The following methods control the keyboard input.
+     public void keyPressed(KeyEvent e)
+     {
+          //This code checks a key was pressed to move one of the
+          // the paddles.
+          if(e.getKeyCode() == KeyEvent.VK_W)
+          {
+               paddle1.setY (paddle1.getY () - 20);
+               paddle1.moveShape();
+               
+               if (paddle1.getY() < 0)
+                    paddle1.setY (0);
+               
+                    
+          }
+          else if(e.getKeyCode() == KeyEvent.VK_S)
+          {
+               paddle1.setY (paddle1.getY () + 20);
+               paddle1.moveShape();
+               
+               if (paddle1.getY() > this.getHeight () - PADDLE_HEIGHT)
+                    paddle1.setY (this.getHeight () - PADDLE_HEIGHT);
+               
+          }
+          
+          else if(e.getKeyCode() == KeyEvent.VK_UP)
+          {
+               paddle2.setY (paddle2.getY () - 20);
+               paddle2.moveShape();
+               
+               if (paddle2.getY() < 0)
+                    paddle2.setY (0);
+
+          }
+          else if(e.getKeyCode() == KeyEvent.VK_DOWN)
+          {
+               paddle2.setY (paddle2.getY () + 20);
+               paddle2.moveShape();
+               
+               if (paddle2.getY() > this.getHeight () - PADDLE_HEIGHT)
+                    paddle2.setY (this.getHeight () - PADDLE_HEIGHT);
+             
+          }
+          
+     }
+     
+     public void keyReleased(KeyEvent e)
+     {}
+     
+     public void keyTyped(KeyEvent e)
+     {}
+     
+     
+}//end PongApplet class
