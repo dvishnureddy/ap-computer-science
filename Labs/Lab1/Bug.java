@@ -1,6 +1,7 @@
 /*
  * This simulates the movement of a bug
  * Ryan O'Hara
+ * September 24, 2008
  */
 
 public class Bug

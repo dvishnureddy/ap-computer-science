@@ -1,6 +1,7 @@
 /*
  * Ryan O'Hara
  * Tests the Bug object
+ * September 24, 2008
  */
 public class BugTester
 {

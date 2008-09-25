@@ -1,6 +1,7 @@
 /**
  * This simulates the gas usage of a car.
  * Ryan O'Hara
+ * September 24, 2008
  */
 
 public class Car
@@ -8,27 +9,17 @@ public class Car
      
      private double MPG, Gas;
           
-     /**
-      * @param MilesPerGallon
-      */
-     
      public Car (double MilesPerGallon)
      {
           MPG = MilesPerGallon;
      }// end constructer
      
-     /**
-      * @param initFeul
-      */
-     
+
      public void tank (double initFeul)
      {
           Gas = initFeul;
      }
 
-     /**
-      * @param gallons
-      */
     
      public void addGas (double gallons)
      {
@@ -36,18 +27,11 @@ public class Car
      }//end addGas method 
      
      
-     /**
-      * @param miles
-      */
-     
      public void drive (double miles)
      {
           Gas -=  miles/MPG;
      }//end drive method 
      
-     /**
-      * @return 
-      */
      
      public double checkGas ()
      {
