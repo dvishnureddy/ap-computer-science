@@ -22,8 +22,8 @@ public class BugTester
           fly.move ();// move 1 left
           fly.move ();// move 1 left
           
-          System.out.println ("The bug is at: "+ ant.getPosition());
-          
+          System.out.println ("The ant is at: "+ ant.getPosition());
+          System.out.println ("The fly is at: "+ fly.getPosition());
      }
 }
                

@@ -3,4 +3,6 @@
  */
 public class Greeter
 {
-     private S
+     private String name;
+     
+     public Greeter (String 

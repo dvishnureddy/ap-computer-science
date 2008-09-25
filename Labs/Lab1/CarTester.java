@@ -5,9 +5,7 @@
  */
 public class CarTester
 {
-     /**
-      * @param args String arguments for the main method
-      */
+     
      public static void main (String args [])
      {
           

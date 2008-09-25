@@ -1,5 +1,7 @@
 /**
  * Tests the Car object
+ * Ryan O'Hara
+ * September 24, 2008
  */
 public class CarTester
 {
