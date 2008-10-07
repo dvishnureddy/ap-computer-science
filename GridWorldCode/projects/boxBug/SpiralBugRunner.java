@@ -31,7 +31,9 @@ public class SpiralBugRunner
     {
         ActorWorld world = new ActorWorld();
         SpiralBug bob = new SpiralBug(3);
+        SpiralBug ryan = new SpiralBug(3);
         world.add(new Location(5, 5), bob);
+        world.add(new Location(3, 4), ryan);
         world.show();
     }
 }

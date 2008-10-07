@@ -1,4 +1,6 @@
-/* 
+/* Ryan O'Hara
+ * 
+ * 
  * AP(r) Computer Science GridWorld Case Study:
  * Copyright(c) 2005-2006 Cay S. Horstmann (http://horstmann.com)
  *
@@ -25,12 +27,15 @@ import java.awt.Color;
  * This class runs a world that contains box bugs. <br />
  * This class is not tested on the AP CS A and AB exams.
  */
-public class SpiralBugRunner
+public class CircleBugRunner
 {
     public static void main(String[] args)
     {
         ActorWorld world = new ActorWorld();
-        SpiralBug bob = new SpiralBug(3);
+        //BoxBug alice = new BoxBug(6);
+        //alice.setColor(Color.ORANGE);
+        CircleBug bob = new CircleBug(2);
+        //world.add(new Location(7, 8), alice);
         world.add(new Location(5, 5), bob);
         world.show();
     }
