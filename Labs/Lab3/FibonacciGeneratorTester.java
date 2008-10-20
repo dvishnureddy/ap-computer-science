@@ -10,7 +10,7 @@ public class FibonacciGeneratorTester
      {
           Scanner in = new Scanner (System.in);
           
-          System.out.println ("Enter the first number: ");
+          System.out.println ("Enter the number of Fibonacci numbers you would like to produce: ");
           int n = in.nextInt();
           
           FibonacciGenerator fGen = new FibonacciGenerator (n);
