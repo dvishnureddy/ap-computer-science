@@ -27,6 +27,6 @@ public class Menus
                          break; 
                }
           }
-          while (choice != 2);
+          while (choice == 1);
      }
 }

@@ -1,3 +1,8 @@
+/*Ryan O'Hara
+ * Tests the Fibonacci Generator
+ * 10-8-08
+ */
+
 public class FibonacciGeneratorTester
 {
      public static void main(String[] args)
