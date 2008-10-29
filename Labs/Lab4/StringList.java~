@@ -1,0 +1,27 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class StringList
+{
+      public static void main (String args [])
+     {
+           ArrayList<String> words = new ArrayList<String> ();
+           Scanner in = new Scanner (System.in);
+
+           for (int i = 0; i < 10; i++)
+           {
+                System.out.println ("Please enter word number "+ (i+1));
+                String s = in.nextLine ();
+                words.add (new String (s));
+           }
+           System.out.println (words);
+           
+           for (int i = 10; i >= 1; i--)
+           {
+                 words.set
+                      (0, words.get (words.size () - i));
+           }
+           System.out.println ("here it is backwards: "+words);
+      }
+}
+     

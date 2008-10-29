@@ -1,18 +1,19 @@
 /**
- A 3 x 3 tic-tac-toe board.
+ *Ryan O'Hara
+ * Connect 4 
  */
-public class TicTacToe
+public class Connect4
 {
      private String[][] board;
-     private static final int ROWS = 3;
-     private static final int COLUMNS = 3;
-     public static final String X = "X";
-     public static final String O = "O";
+     private static final int ROWS = 7;
+     private static final int COLUMNS = 6;
+     public static final String R = "R";
+     public static final String B = "B";
      
      /**
       Constructs an empty board.
       */
-     public TicTacToe()
+     public Connect4()
      {
           board = new String[ROWS][COLUMNS];
           initializeBoard();
@@ -28,24 +29,6 @@ public class TicTacToe
                for (int j = 0; j < COLUMNS; j++)
                board [i][j] = " ";
      } // end initializeBoard method
-     
-     
-     /*
-      * This method sets the board to print "Tic Tac Toe"
-      */
-     public void setWelcomeBoard ()
-     {
-          board [0][0] = "T";
-          board [1][0] = "T";
-          board [2][0] = "T";
-          board [0][1] = "i";
-          board [1][1] = "a";
-          board [2][1] = "o";
-          board [0][2] = "c";
-          board [1][2] = "c";
-          board [2][2] = "e";
-     } //end setWelcomeBoard method
-     
      
      /*
       * Sets the indicated piece onto the board.
@@ -64,9 +47,9 @@ public class TicTacToe
      }//end setPiece method
      
      
-     /* This method checks for 3 in a row of X's or O's.
+     /* This method checks for 4 in a row of R's or B's.
       * 
-      * @return X if X wins, O if O wins, 
+      * @return R if R wins, B if B wins, 
       * "T" if no one wins and there is a tie,
       * or "T" is the board is not full yet.
       */

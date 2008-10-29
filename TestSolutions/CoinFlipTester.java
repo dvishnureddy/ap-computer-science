@@ -1,0 +1,13 @@
+/*Ryan O'Hara
+ * Tests CoinFlipper.java
+ * 10-27-08
+ */
+public class CoinFlipTester
+{
+     public static void main(String[] args)
+     {
+       CoinFlipper c = new CoinFlipper ();
+       
+       System.out.println (c.flipProbability(3));
+     }
+}

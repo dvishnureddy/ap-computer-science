@@ -1,7 +1,7 @@
 /************************************************************************
   * 
   *       Introduction to Programming
-  *       Name: Mr. Dietzler
+  *       Name: Ryan O'Hara
   *       Date: 2-6-07
   *       Title: TicTacToeTester.java
   *       Description: Simulates the game of tic-tac-toe using a 

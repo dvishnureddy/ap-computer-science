@@ -99,7 +99,7 @@ class TicTacToeTester
                //loop until a player wins
                do 
                {
-                    Sys2tem.out.println ("Please hit enter to continue...");
+                    System.out.println ("Please hit enter to continue...");
                     in.nextLine();
                     
                     if (whoseTurn)

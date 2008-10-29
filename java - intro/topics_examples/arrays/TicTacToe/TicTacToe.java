@@ -1,19 +1,18 @@
 /**
- *Ryan O'Hara
- * Connect 4 
+ A 3 x 3 tic-tac-toe board.
  */
-public class Connect4
+public class TicTacToe
 {
      private String[][] board;
-     private static final int ROWS = 7;
-     private static final int COLUMNS = 6;
-     public static final String R = "R";
-     public static final String B = "B";
+     private static final int ROWS = 3;
+     private static final int COLUMNS = 3;
+     public static final String X = "X";
+     public static final String O = "O";
      
      /**
       Constructs an empty board.
       */
-     public Connect4()
+     public TicTacToe()
      {
           board = new String[ROWS][COLUMNS];
           initializeBoard();
@@ -29,6 +28,24 @@ public class Connect4
                for (int j = 0; j < COLUMNS; j++)
                board [i][j] = " ";
      } // end initializeBoard method
+     
+     
+     /*
+      * This method sets the board to print "Tic Tac Toe"
+      */
+     public void setWelcomeBoard ()
+     {
+          board [0][0] = "T";
+          board [1][0] = "T";
+          board [2][0] = "T";
+          board [0][1] = "i";
+          board [1][1] = "a";
+          board [2][1] = "o";
+          board [0][2] = "c";
+          board [1][2] = "c";
+          board [2][2] = "e";
+     } //end setWelcomeBoard method
+     
      
      /*
       * Sets the indicated piece onto the board.
@@ -47,9 +64,9 @@ public class Connect4
      }//end setPiece method
      
      
-     /* This method checks for 4 in a row of R's or B's.
+     /* This method checks for 3 in a row of X's or O's.
       * 
-      * @return R if R wins, B if B wins, 
+      * @return X if X wins, O if O wins, 
       * "T" if no one wins and there is a tie,
       * or "T" is the board is not full yet.
       */
@@ -118,18 +135,6 @@ public class Connect4
      
      
      /**
-      Sets a field in the board. The field must be unoccupied.
-      @param i the row index 
-      @param j the column index 
-      @param player the player ("x" or "o")
-      */
-     public void set(int i, int j, String player)
-     {
-          if (board[i][j].equals(" "))
-               board[i][j] = player;
-     }
-     
-     /**
       Creates a string representation of the board, such as
       |x  o|
       |  x |
@@ -149,7 +154,7 @@ public class Connect4
                boardOutput += "\n+-----+\n";
           }
           boardOutput += "\n\n";
-          boardOutput += "\n\n 8===>~~~~";
+          
           return boardOutput;
      }//end toString method
      

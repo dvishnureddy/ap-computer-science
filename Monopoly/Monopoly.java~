@@ -1,0 +1,67 @@
+/* Ryan O'Hara
+ * play Monopoly!!!
+ */
+import java.util.Scanner;
+import javax.swing.*;
+
+public class Monopoly
+{
+     public static void main (String args [])
+     {
+          Scanner in = new Scanner (System.in);
+          
+          Player p1;
+          Die d1 = new Die (6);
+          Die d2 = new Die (6);
+          
+          boolean gameOver = false;
+   
+          while (gameOver == false)
+          {
+               System.out.println ("Welcome to MONOPOLY!");
+               System.out.println (" ==============="
+                                        + "\n[M|O|N|O|P|O|L|Y]");
+               
+               System.out.println ("\nPlayer 1 enter your name: ");
+               String name = in.nextLine ();
+               System.out.println ("\nThere are 9 pieces: Thimble, Bag of Money, Cannon, Top Hat, Boot, Dog, Car, Iron and Wheelbarrow");
+               System.out.println ("Player 1 enter your piece: ");
+               String piece = in.nextLine ();
+               
+               new Player (name, piece);
+          
+               int menu = 0;
+               System.out.println ("Enter 1 to roll or 2 to quit: ");
+               menu = in.nextInt ();
+               
+               do
+               {
+                    switch (menu)
+                    {
+                         case 1:
+                         {
+                              int roll = d1.getRoll()+ d2.getRoll();
+                              System.out.println ("You rolled a "+ roll);
+                              break;
+                         }
+                         case 2:
+                         {
+                              System.out.println ("Quitting game");
+                              gameOver = true;
+                              break;
+                         }
+                    }
+               }
+               while (menu != 2);
+          }
+     }
+     
+     /*public static int rollDice ()
+     {
+          Die d1 = new Die (6);
+          Die d2 = new Die (6);
+          int roll = d1.getRoll()+ d2.getRoll();
+          return roll;
+     }*/
+}
+          

@@ -4,9 +4,11 @@ public class DieTester
 {
      public static void main(String [] args)
      { 
-          Die Roll = new Die (6);
+          Die Roll = new Die (10);
           
-          System.out.println (Roll.getRoll());
+          System.out.println ("There are "+Roll.getNumSides()+" sides.");
+          
+          System.out.println ("You rolled a " +Roll.getRoll());
           
      }
 }

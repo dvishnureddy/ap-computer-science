@@ -1,0 +1,41 @@
+/* Ryan O'Hara
+ * Coin Flipper
+ * October 27, 2008
+ */
+import java.util.*;
+
+class CoinFlipper
+{
+   String print;
+  public String flipProbability (int numCases)
+  {
+    numCases = 3;
+    int n;
+    double t = 0.0;
+    
+    for (int i = 1; i < numCases; i++)
+    {
+      
+      for (int j = 0; j < 200; j++)
+      {
+        Random gen = new Random (2);
+        n = gen.nextInt();
+        if (n == 0)
+          t ++;
+      }
+      double prob = t/200.0;
+      
+      double percent = (prob *= 100);
+      
+      print = ("Case"+ i +": The probability of flipping tails is "+percent+"%.");
+    }
+    return print;
+  }
+  
+  public String getCase ()
+  {
+    return print;
+  }
+}
+      
+            

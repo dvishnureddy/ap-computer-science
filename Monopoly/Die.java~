@@ -1,9 +1,11 @@
- /*Ryan O'Hara 
+ /*Ryan O'Hara
+  * Die for monopoly
  */
 import java.util.Random;
 
 public class Die
 {
+     
      private Random gen;
      private int numSides;
      
@@ -26,5 +28,5 @@ public class Die
      public int getRoll()
      {
           return gen.nextInt (numSides) +1;
-     }
+     }    
 }

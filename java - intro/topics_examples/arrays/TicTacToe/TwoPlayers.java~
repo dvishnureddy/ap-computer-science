@@ -71,8 +71,8 @@ public class TwoPlayers
      */
     public void setP1Piece ()
     {
-        player1Piece = TicTacToe.X;
-        player2Piece = TicTacToe.O;
+        player1Piece = Connect4.R;
+        player2Piece = Connect4.B;
         
         return;
     }//end setP1Piece method
@@ -86,8 +86,8 @@ public class TwoPlayers
     
     public void setP2Piece ()
     {
-        player2Piece = TicTacToe.X;
-        player1Piece = TicTacToe.O;
+        player2Piece = Connect4.R;
+        player1Piece = Connect4.B;
         
         return;
     }//end setP2Piece method

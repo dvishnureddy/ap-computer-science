@@ -1,0 +1,24 @@
+import java.util.ArrayList;
+import java.util.Random;
+
+public class RandomInts1
+{
+   public static void main (String args [])
+     {
+     ArrayList nums = new ArrayList ();
+     
+     Random gen = new Random ();
+     int n; 
+     
+     for (int i = 1; i < 10; i++)
+     {
+       n = gen.nextInt (100) + 1;
+       nums.add (new int (n));
+     }
+     
+     System.out.print (nums);
+   }
+}
+     
+     
+  

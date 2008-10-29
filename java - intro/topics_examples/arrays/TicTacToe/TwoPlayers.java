@@ -1,7 +1,7 @@
 /************************************************************************
 * 
 *       Introduction to Programming
-*       Name: Mr. Dietzler
+*       Name: Ryan O'Hara 
 *       Date: 2/6/07
 *       Title: TwoPlayers.java
 *       Description: Stores information for two player names in
@@ -71,8 +71,8 @@ public class TwoPlayers
      */
     public void setP1Piece ()
     {
-        player1Piece = Connect4.R;
-        player2Piece = Connect4.B;
+        player1Piece = TicTacToe.X;
+        player2Piece = TicTacToe.O;
         
         return;
     }//end setP1Piece method
@@ -86,8 +86,8 @@ public class TwoPlayers
     
     public void setP2Piece ()
     {
-        player2Piece = Connect4.R;
-        player1Piece = Connect4.B;
+        player2Piece = TicTacToe.X;
+        player1Piece = TicTacToe.O;
         
         return;
     }//end setP2Piece method

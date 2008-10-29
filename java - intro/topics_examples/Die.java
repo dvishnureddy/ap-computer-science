@@ -4,6 +4,7 @@ import java.util.Random;
 
 public class Die
 {
+     
      private Random gen;
      private int numSides;
      
@@ -27,4 +28,5 @@ public class Die
      {
           return gen.nextInt (numSides) +1;
      }
+     
 }
