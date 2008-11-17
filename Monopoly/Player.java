@@ -34,14 +34,14 @@ public class Player
           return space;
      }
      
+     public void movePiece (int amount)
+     {
+          space += amount;
+     }
+     
      public String getPiece ()
      {
           return whichPiece;
-     }
-     
-     public void movePiece (int amount)
-     {
-          whichPiece += amount;
      }
      
      public void addDoubles ()
@@ -57,6 +57,11 @@ public class Player
      public void resetDoubles ()
      {
           doubles = 0;
+     }
+     
+     public void setInJail (boolean j)
+     {
+          inJail = j;
      }
      
      public boolean isInJail ()

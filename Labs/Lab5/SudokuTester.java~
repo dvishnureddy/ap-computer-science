@@ -1,0 +1,59 @@
+import java.util.Random;
+import java.util.Scanner;
+
+class SudokuTester
+{
+     public static void main (String args[])
+     {
+          Scanner in = new Scanner (System.in);
+          
+          //initialize the board
+          Sudoku game = new Sudoku();
+     }
+     
+     public static void takeTurn (Sudoku game)
+     {
+          Scanner in = new Scanner (System.in);
+          
+          int row = -1, column = -1;
+          boolean spaceAvailable = true;
+          int guess = 0;
+          
+          //Loop until the player chooses a valid space on the board
+          do
+          {
+               row = -1;
+               column = -1;
+               System.out.println ("What row would you like to place your number in?");
+               guess = in.nextInt ();
+               
+               while (row < 1 || row > 3)
+               {
+                    System.out.print (game.getBoardOutputRows () + 
+                                      "\n\nRow: ");
+                    row = in.nextInt();
+                    if (row < 1 || row > 3)
+                         System.out.println ("You have entered an invalid number of rows." + 
+                                             " Please enter again.");
+               }
+               
+               while (column < 1 || column > 3)
+               {
+                    System.out.print (game.getBoardOutputColumns () + 
+                                      "\n\nColumn: ");
+                    column = in.nextInt ();
+                    if (column < 1 || column > 3)
+                         System.out.println ("You have entered an invalid number of columns." + 
+                                             " Please enter again.");
+               }
+               
+               spaceAvailable = game.setNumber (guess, row, column);
+               
+               if (!spaceAvailable)
+                    System.out.println ("That space is taken.  Please try again.");
+          } // end do
+          while (!spaceAvailable);
+          
+     } // end takeTurn method
+     
+}
