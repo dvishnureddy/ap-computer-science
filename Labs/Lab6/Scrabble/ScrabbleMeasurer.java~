@@ -1,0 +1,7 @@
+/*
+ * Ryan O'Hara
+ * 12/3/08
+ * A class to simulate a coin which implements comparable
+ */
+public class ScrabbleMeasurer implements Measurer
+{

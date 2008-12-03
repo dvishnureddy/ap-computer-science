@@ -1,0 +1,19 @@
+/*
+ * Ryan O'Hara
+ * December 3, 2008
+ * tests ScrabbleMeasurer
+ */
+
+public class scrabbleTester
+{
+     public static void main(String[] args)
+     {
+          Measurer sm = new ScrabbleMeasurer();
+          DataSet scrabbleData = new DataSet(sm);
+          
+          scrabbleData.add(new String("Ryan"));
+          scrabbleData.add(new String("Fox"));
+          scrabbleData.add(new String("the"));
+     }
+}
+          

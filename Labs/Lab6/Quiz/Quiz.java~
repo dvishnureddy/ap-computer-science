@@ -1,0 +1,45 @@
+/* Ryan O'Hara
+ * November 24, 2008
+ * P9.2 a data set of quizes
+ */
+public class Quiz implements Measurable
+{
+     String letterGrade;
+     double grade;
+     public Quiz (double numScore)
+     {
+          grade = numScore;
+          
+          if (numScore > 92.5)
+               letterGrade = "A";
+          else if (numScore < 92.5 && numScore > 88.5)
+               letterGrade = "B+";
+          else if (numScore < 88.5 && numScore > 84.5)
+               letterGrade = "B";
+          else if (numScore < 84.5 && numScore > 81.5)
+               letterGrade = "C+";
+          else if (numScore < 81.5 && numScore > 76.5)
+               letterGrade = "C";
+          else if (numScore < 76.5 && numScore > 72.5)
+               letterGrade = "D+";
+          else if (numScore < 72.5 && numScore > 69.5)
+               letterGrade = "D";
+          else
+               letterGrade = "F";
+     }
+     
+     public double getNumGrade ()
+     {
+          return grade;
+     }
+     
+     public String getLetGrade ()
+     {
+          return letterGrade;
+     }
+     
+     public double getMeasure()
+     {
+          return grade;
+     }
+}

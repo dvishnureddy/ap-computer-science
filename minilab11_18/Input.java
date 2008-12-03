@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+/*
+ * Ryan O'Hara
+ * November 18, 2008
+ * P8.10
+ */
+public class Input
+{
+     
+     public static int readInt(Scanner in, String prompt, String error, int min, int max)
+     {
+          while (true)
+          {
+               System.out.println(prompt);
+               int num = in.nextInt();
+               
+               if (num >= min && num <= max)
+                    return num;         
+               else
+                    System.out.println("There is a problem with your input");
+          }
+     }
+}

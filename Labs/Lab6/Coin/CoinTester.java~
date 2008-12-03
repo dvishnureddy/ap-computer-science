@@ -1,0 +1,13 @@
+/*
+ * Ryan O'Hara
+ * December 3, 2008
+ * Tests Purse
+ */
+public class CoinTester
+{     
+  public static void main (String args[])     
+  {
+       Purse p = new Purse ();
+       p.addCoin (new Coin("quarter", 0.25));
+       p.addCoin (new Coin("dime", 0.10));
+       p.addCoin (new Coin("nickel", 0.05));

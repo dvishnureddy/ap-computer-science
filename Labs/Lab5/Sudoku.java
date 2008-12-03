@@ -114,26 +114,4 @@ public class Sudoku
           
      } // end getBoardOutputRows method
      
-     
-     /*
-      * This method returns the board (a 2-d array)
-      * so that the player can see the column numbers.
-      */
-     public String getBoardOutputColumns ()
-     {
-          String boardOutput = "\n      Columns\n       1 2 3 4 5 6 7 8 9\n";
-          boardOutput += "      +-----+-----+-----+\n";
-          for (int i = 0; i < ROWS; i++)
-          {
-               boardOutput += "      |";
-               for (int j = 0; j < COLUMNS; j++)
-               {
-                    boardOutput += board [i][j] + "|";
-               }
-               boardOutput += "\n      +-----+-----+-----+\n";
-          }
-          
-          return boardOutput;
-     } // end getBoardOutputColumns method
-     
 }
