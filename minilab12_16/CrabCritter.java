@@ -24,7 +24,7 @@ import info.gridworld.grid.Location;
 import java.awt.Color;
 import java.util.ArrayList;
 
-/**
+/*
  * A <code>CrabCritter</code> looks at a limited set of neighbors when it eats and moves.
  * <br />
  * This class is not tested on the AP CS A and AB exams.

@@ -1,0 +1,32 @@
+ /*Ryan O'Hara
+  * Die for monopoly
+ */
+import java.util.Random;
+
+public class Die
+{
+     
+     private Random gen;
+     private int numSides;
+     
+     public Die (int sides)
+     {
+          numSides = sides;
+          gen = new Random();
+     }
+     
+     public int getNumSides ()
+     {
+          return numSides;
+     }
+     
+     public void setNumSides (int newSides)
+     {
+          numSides = newSides;
+     }
+     
+     public int getRoll()
+     {
+          return gen.nextInt (numSides) +1;
+     }    
+}
