@@ -1,0 +1,53 @@
+/*
+ * Ryan O'Hara
+ * Lab 7 P11.2
+ * Feburary 6, 2009
+ */
+import java.io.*;
+import java.util.*;
+
+public class floatingPointException
+{      
+  public static void main(String[] args) throws InputMismatchException
+  {
+    Scanner in = new Scanner (System.in);
+    double total = 0.0;
+    int i = 0;
+    int choice;
+    boolean done = false;
+    while (!done)
+    {
+      try
+      {
+        System.out.println ("Type 1 to enter another number and 2 to quit");
+        choice = in.nextInt ();
+        
+        switch (choice)
+        {
+        case 1:
+            System.out.println("Please enter a number: ");
+            total += in.nextDouble();
+            System.out.println ("The total is "+total);
+            break;
+        case 2:
+          done = true;
+          break;
+        }
+      }
+      catch (InputMismatchException e)
+      {
+        if (i > 1)
+        {
+          System.out.println("You did not enter a valid number.");
+          done = true;
+        }
+        else
+        {
+          done = false;
+          choice = 1;
+          i++;
+        }
+      }
+    }
+  }
+}

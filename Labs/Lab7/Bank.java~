@@ -1,0 +1,25 @@
+/*
+ * Ryan O'Hara
+ * 2-6-09
+ * P11.15
+ */
+import java.util.*;
+import java.io.*;
+
+public class Bank
+{      
+  public static void main(String[] args)
+  {
+       ArrayList<BankAccount> accounts = new ArrayList<BankAccount> ();
+       
+       Scanner in = new Scanner (System.in);
+       System.out.println("Please enter your balance: ");
+       Double bal = in.nextDouble();
+       
+       System.out.println ("Please enter an account number: ");
+       Double aNum = in.nextDouble();
+        
+       BankAccount accountNumber(aNum) = new BankAccount (bal);
+  }
+}
+            
