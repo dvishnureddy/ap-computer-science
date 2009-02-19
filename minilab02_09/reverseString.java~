@@ -1,0 +1,25 @@
+//Ryan O'Hara
+//minilab
+
+public class reverseString
+{
+  private String sentence;
+  private String newSent;
+  
+  public reverseString (String str) 
+  {
+    sentence = str;
+  }
+  
+  public void reverse()
+  {
+    int n = 1;
+    reverseString s = new reverseString (sentence.substring(n)+sentence.charAt(0));
+    n++;
+  }
+  
+  public String getText()
+  {
+    return newSent;
+  }
+}
